@@ -1,3 +1,9 @@
+.heading{
+    background-color:gray;
+    padding: 50px;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
 ul {
     list-style-type: none;
     overflow: hidden;
@@ -18,5 +24,5 @@ li a {
 }
 
 li a:hover {
-    background-color: grey;
+    background-color: orange;
 }
