@@ -3,6 +3,10 @@
     padding: 20px;
     text-align: center;
     margin-bottom: 10px;
+    margin-top: 10px;
+}
+.main-table{
+    border-bottom: dotted grey 2px;
 }
 
 footer {

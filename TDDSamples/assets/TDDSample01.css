@@ -1,10 +1,22 @@
-.heading{
-    background-color:gray;
+.main-index img {
+    position: fixed;
+    height: 30px;
+    width: 30px;
+    margin: 10px;
+}
+
+.heading {
+    background-color: gray;
     padding: 50px;
     text-align: center;
     text-shadow: 3px 2px red;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
+.main {
+    padding: 20px;
+}
+
 ul {
     list-style-type: none;
     overflow: hidden;
