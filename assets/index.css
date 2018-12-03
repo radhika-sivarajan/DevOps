@@ -1,0 +1,14 @@
+.index {
+    border: dotted grey 2px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+footer {
+    clear: both;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    padding: 10px;
+}
