@@ -4,3 +4,7 @@
     width: 30px;
     margin: 10px;
 }
+
+#clear, .letter-btn, .disp-btn {
+    margin: 3px;
+}

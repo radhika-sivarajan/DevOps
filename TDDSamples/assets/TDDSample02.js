@@ -1,37 +1,22 @@
-var computerChoices = ["r", "p", "s"];
-var wins = 0;
-var losses = 0;
-var ties = 0;
+$(document).ready(function () {
+    var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
 
-document.onkeyup = function (event) {
-    var userGuess = event.key;
-    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-    console.log(computerGuess);
-    if ((userGuess === "r") || (userGuess === "p") || (userGuess === "s")) {
-        if ((userGuess === "r") && (computerGuess === "s")) {
-            wins++;
-        }
-        else if ((userGuess === "r") && (computerGuess === "p")) {
-            losses++;
-        }
-        else if ((userGuess === "s") && (computerGuess === "r")) {
-            losses++;
-        }
-        else if ((userGuess === "s") && (computerGuess === "p")) {
-            wins++;
-        }
-        else if ((userGuess === "p") && (computerGuess === "r")) {
-            wins++;
-        }
-        else if ((userGuess === "p") && (computerGuess === "s")) {
-            losses++;
-        }
-        else if (userGuess === computerGuess) {
-            ties++;
-        }
-        var html = " Win : " + wins + " Loss: " + losses + " Tie :" + ties;
-        document.getElementById("display").innerHTML = html;
-    } else {
-        alert("Please enter Lowercase R P or S")
+    for (var i = 0; i < letters.length; i++) {
+        var letterBtn = $("<button>");
+        letterBtn.addClass("btn btn-info letter-btn");
+        letterBtn.attr("data-letter", letters[i]);
+        letterBtn.text(letters[i]);
+        $("#buttons").append(letterBtn);
     }
-}
+
+    $(".letter-btn").on("click", function () {
+        var dispBtn = $("<button>");
+        dispBtn.addClass("btn btn-danger disp-btn");
+        dispBtn.text($(this).attr("data-letter"));
+        $("#display").append(dispBtn);
+    });
+
+    $("#clear").on("click", function () {
+        $("#display").empty();
+    });
+});
