@@ -1,4 +1,4 @@
-var iData = require("./TDDSample03Exp");
+var iData = require("./Sample03Exp");
 var data = iData.myData;
 
 for (var key in data) {
