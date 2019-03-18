@@ -7,4 +7,7 @@ instances = ec2.create_instances(
     MinCount=1,
     MaxCount=1,
     InstanceType='t2.micro',
+    SecurityGroupIds=[
+        'sg-0e9544434768dcde0',
+    ],
     KeyName='radhika-tdd-python-key')
