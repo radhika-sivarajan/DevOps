@@ -1,14 +1,14 @@
 # 1. Count unique letters in given string
 
-cString ="aassdff"
+c_string ="aassdff"
 
-def countUniqueLetters(str):
+def count_unique_letters(str):
     letters = dict.fromkeys(str, 0)
     for i in str:
         letters[i] += 1
     return letters
 
-print (countUniqueLetters(cString))
+print (count_unique_letters(c_string))
 
 # *****************************************************
 
@@ -31,11 +31,16 @@ print(array_check(myList))
 myString = "123456789"
 
 def string_conversion(string):
-    return(string[::2])
+    newString = ""
+    for i in range(len(string)):
+        if i%2 == 0:
+            newString += string[i]
+    return(newString)
 
 print(string_conversion(myString))
 
-newString = lambda string: string[::2] # With Lamda function
+# With Lamda function and string slicing
+newString = lambda string: string[::2]
 print(newString (myString))
 
 # *****************************************************
@@ -48,6 +53,13 @@ string2 = "aswewTD"
 def end_word(a,b):
     a = a.lower()
     b = b.lower()
+
+    # Using endswith function
+    # return (b.endswith(a) or a.endswith(b))
+
+    # Using string splicing, indexing and comparison
+    # return a[-(len(b)):] == b or b[-(len(a)):] == a
+
     if len(a)>len(b) and a.find(b) != -1 and a[-1] == b[-1]:
         return True
     elif len(a)<len(b) and b.find(a) != -1 and a[-1] == b[-1]:
@@ -55,3 +67,43 @@ def end_word(a,b):
     return False
 
 print(end_word(string1,string2))
+
+# *****************************************************
+
+# 5. Return string with every char repeated once. aBc -> aaBBcc, Q45 -> QQ4455
+string3 = "dfreasxa333fer--wedwe"
+
+def repeat_char(string):
+    newString = ""
+    for i in string:
+        newString +=  i + i
+    return newString
+
+print(repeat_char(string3))
+
+# *****************************************************
+
+# 6. How many even inters in the array
+
+int_list = [1,4,61,7,81]
+evens_count= len(filter(lambda num: num%2==0, int_list))
+print(evens_count)
+
+# *****************************************************
+
+# 7. Sum of 3 numbers except teens 13-19 (sans 15 and 16)
+
+numList = [14, 15, 16]
+
+def fix_teen(n):
+    if n in [13,14,17,18,19]:
+        return 0
+    return n
+
+def no_teen_sum(list):
+    sum = 0
+    for i in list:
+        sum += fix_teen(i)
+    return sum
+
+print(no_teen_sum(numList))
