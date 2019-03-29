@@ -37,6 +37,8 @@ def generate_clues(code,userGuess):
 
     # Compare guess to code
     for ind,num in enumerate(userGuess):
+        print(ind,num)
+        print(code[ind])
         if num == code[ind]:
             clues.append("Match")
         elif num in code:
