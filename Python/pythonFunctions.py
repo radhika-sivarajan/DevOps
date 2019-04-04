@@ -93,7 +93,7 @@ print(evens_count)
 
 # 7. Sum of 3 numbers except teens 13-19 (sans 15 and 16)
 
-numList = [14, 15, 16]
+num_list = [14, 15, 16]
 
 def fix_teen(n):
     if n in [13,14,17,18,19]:
@@ -106,4 +106,4 @@ def no_teen_sum(list):
         sum += fix_teen(i)
     return sum
 
-print(no_teen_sum(numList))
+print(no_teen_sum(num_list))
