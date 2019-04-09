@@ -8,3 +8,6 @@ for x in multiples_gen:
 squared = {x**2 for x in [1, 1, 2]}
 print(squared)
 # Output: {1, 4}
+
+
+squared = [x**2 for x in range(10)]
