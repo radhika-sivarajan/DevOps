@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Users</title>
+    <link href="{% static "css/userstyle.css" %}" rel="stylesheet">
+  </head>
+  <body>
+    {% if user %}
+    <ol>
+      {% for person in users %}
+      <li>User info</li>
+      <ul>
+        <li>First name: {{ person.first_name }}</li>
+        <li>Last name: {{ person.last_name }}</li>
+        <li>Email: {{ person.email }}</li>
+      </ul>
+      {% endfor %}
+    </ol>
+    {% else %}
+    <p> No data</p>
+    {% endif %}
+  </body>
+</html>
