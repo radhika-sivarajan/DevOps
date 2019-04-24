@@ -7,7 +7,24 @@
     <link href="{% static "css/mainstyle.css" %}" rel="stylesheet">
   </head>
   <body>
-    <h1>Minion</h1>
-    <img src="{% static "images/minion.jpg"%}" alt="Minion smile">
+    <h1>Level two</h1>
+    <div>
+      {% if access_record %}
+      <table>
+        <thead>
+          <th>Web site</th>
+          <th>Date<th>
+        </thead>
+        {% for acc in access_record %}
+        <tr>
+          <td>{{ acc.name }}</td>
+          <td>{{ acc.date }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% else %}
+        <p>No data</p>
+      {% endif %}
+    </div>
   </body>
 </html>
