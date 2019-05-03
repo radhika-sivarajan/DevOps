@@ -5,7 +5,6 @@ from datetime import datetime, timedelta
 import csv
 import re
 import pandas as pd
-import collections
 
 
 def get_diff_time(time1,time2):
@@ -40,30 +39,17 @@ def get_break_time(break_notes):
     from_time = duration_list[0]
     to_time = duration_list[1]
 
-    # If its in time format PM add 12 hour to make it in 24 hour format
-    # if to_time[-2:] == 'PM':
-    #     to_time = str(float(to_time.strip("PM"))+12)
-    #     # if 'AM' not in from_time or 'PM' in from_time:
-    #     #     from_time = str(float(from_time.strip("PM"))+12)
-    #     #     to_time = str(float(to_time.strip("PM"))+12)
-    #     # elif 'AM' in from_time and 'PM' in from_time:
-    #     #     from_time = str(float(from_time.strip("AM")))
-    #     #     to_time = str(float(to_time.strip("PM"))+12)
-    #     print(from_time,to_time)
-
     from_time = re.findall('\d+',from_time)
     to_time = re.findall('\d+',to_time)
-
 
     from_hour = from_time[0]
     from_minute = ''
     to_hour = to_time[0]
     to_minute = ''
 
-    if from_hour > to_hour:
+    if int(from_hour) > int(to_hour):
         to_hour = str(int(to_hour)+12)
-        print(to_hour)
-        # print(from_hour,from_minute,to_hour,to_minute)
+
     if len(from_time) > 1:
         from_minute = from_time[1]
     if len(to_time) > 1:
@@ -214,11 +200,8 @@ if __name__ == '__main__':
     # You can change this to test your code, it will not be used
     path_to_sales = "transactions.csv"
     path_to_shifts = "work_shifts.csv"
-    # best_hour, worst_hour = main(path_to_shifts, path_to_sales)
-    # print("\nBest hour : {}, Worst hour : {}\n".format(best_hour, worst_hour))
-    shifts_processed = process_shifts(path_to_shifts)
-    print(shifts_processed)
-
+    best_hour, worst_hour = main(path_to_shifts, path_to_sales)
+    print("\nBest hour : {}, Worst hour : {}\n".format(best_hour, worst_hour))
 
 
 # Please write you name here: Radhika Sivarajan
