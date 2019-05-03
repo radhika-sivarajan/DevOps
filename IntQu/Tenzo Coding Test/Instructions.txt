@@ -1,0 +1,13 @@
+STEPS TO RUN THE PROGRAM
+***************************
+
+Setup virtualenv for python3
+  - pyenv install 3.7.3
+  - pyenv virtualenv 3.7.3 Py3Env
+  - pyenv activate Py3Env
+
+Install modules (pandas)
+  - pip install pandas
+
+Run the program solution
+  - python EmptySolution.py
