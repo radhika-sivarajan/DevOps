@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Javascipt, Jquery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/Calculator.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Elements for click and sticky buttons -->
+        <div class="row">
+            <h3>Display letter</h3>
+            <div class="col-sm-6" id="buttons"></div><br>
+            <div><button class="btn btn-warning" id="clear">clear</button></div><br>
+            <div class="col-sm-4" id="display"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Append letters
+            var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
+
+            // Generate display buttons
+            for (var i = 0; i < letters.length; i++) { 
+                var letterBtn = $("<button>");
+                letterBtn.addClass("btn btn-info letter-btn");
+                letterBtn.attr("data-letter", letters[i]);
+                letterBtn.text(letters[i]);
+                $("#buttons").append(letterBtn);
+            }
+
+            //Append button on the other side when click on respective button
+            $(".letter-btn").on("click", function () { 
+                var dispBtn = $("<button>");
+                dispBtn.addClass("btn btn-danger disp-btn");
+                dispBtn.text($(this).attr("data-letter"));
+                $("#display").append(dispBtn);
+            });
+
+            // Clear the new button
+            $("#clear").on("click", function () { 
+                $("#display").empty();
+            });
+
+        });
+    </script>
+</body>
+
+</html>

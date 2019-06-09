@@ -1,25 +1,4 @@
 $(document).ready(function () {
-    // Append letters
-    var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
-
-    for (var i = 0; i < letters.length; i++) { // Generate display buttons
-        var letterBtn = $("<button>");
-        letterBtn.addClass("btn btn-info letter-btn");
-        letterBtn.attr("data-letter", letters[i]);
-        letterBtn.text(letters[i]);
-        $("#buttons").append(letterBtn);
-    }
-
-    $(".letter-btn").on("click", function () { //Append button on the other side when click on respective button
-        var dispBtn = $("<button>");
-        dispBtn.addClass("btn btn-danger disp-btn");
-        dispBtn.text($(this).attr("data-letter"));
-        $("#display").append(dispBtn);
-    });
-
-    $("#clear").on("click", function () { // Clear the new button
-        $("#display").empty();
-    });
 
     // Calculator
     var firstNumber;
