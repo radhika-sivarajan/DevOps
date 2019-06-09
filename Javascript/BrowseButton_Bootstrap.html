@@ -1,0 +1,74 @@
+<!-- Browse button -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+
+        <!-- Section to upload image -->
+        <div class="row file-upload-section">
+            <img id="image" src="" height="100">
+            <div class="col-md-3">
+                <form id="image-form">
+                    <div class="form-group">
+                        <label for="input-picture">Upload a picture</label>
+                        <div class="input-group">
+                            <label class="input-group-btn">
+			                    <span class="btn btn-primary">
+			                        Browse&hellip; <input type="file" style="display: none;" id="input-picture">
+			                    </span>
+			                </label>
+                            <input type="text" class="form-control file-name" readonly>
+                        </div>
+                    </div>
+
+                    <p class="help-block message">Format (.jpg, .png, .jpeg, .gif, .bmp) | Size max 2MB</p>
+
+                    <button type="submit" id="submit-pic" class="btn btn-success btn-sm">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function getFileName() {
+            var fileName = $("#input-picture").val()
+            var lastIndex = fileName.lastIndexOf("\\");
+            if (lastIndex >= 0) {
+                fileName = fileName.substring(lastIndex + 1);
+            }
+            return fileName;
+        }
+
+        function readFile(input) {
+
+            // If the input is a file. 
+            if (input.files && input.files[0]) {
+
+                // Read file. Set path to the src of image tag id for displaying image. 
+                var reader = new FileReader();
+                reader.readAsDataURL(input.files[0]);
+
+                reader.onload = function(event) {
+                    $('#image').attr('src', event.target.result);
+                }
+            }
+        }
+
+        $("#input-picture").change(function() {
+            var fileName = getFileName();
+            $('.file-name').val(fileName);
+            readFile(this);
+        });
+    </script>
+
+</body>
+
+</html>

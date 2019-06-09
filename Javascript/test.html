@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test</title>
+    <style>
+        #container {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            background-color: green;
+        }
+
+        #box {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="btn">Test Javascript</h1>
+    <button onclick="alertData()">Click</button>
+    <p id="text"></p>
+    <button id="simpleButton">Try this</button><br>
+
+    <div id="container">
+        <div id="box">
+
+        </div>
+    </div>
+    <script>
+        var click = 0;
+
+        function alertData() {
+            click++;
+            document.getElementById("btn").style.color = "blue";
+            document.getElementById("btn").innerHTML =
+                "Button clicked <b>" + click + "</b> time(s)";
+            document.getElementById("text").innerHTML = Math.floor(Math.random() * 10);
+            animate();
+        }
+
+        function animate() {
+            var pos = 0;
+            var aniBox = document.getElementById("box");
+            var id = setInterval(frame, 2);
+            function frame() {
+                if (pos == 180) {
+                    clearInterval(id);
+                } else {
+                    pos++;
+                    aniBox.style.top = pos + "px";
+                    aniBox.style.left = pos + "px";
+                }
+            }
+        }
+
+        function person(name, age, location) {
+            this.name = name;
+            this.age = age;
+            this.location = location;
+        }
+        var p1 = new person("radhika", 10, "seawnc");
+        console.log(p1);
+
+        document.getElementById("simpleButton").addEventListener("click", function () {
+            alert("hello");
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+
+    <center>
+        <h2>
+            <label for="input-picture">Upload a picture</label><br>
+            <input type="file" accept='image/*' id="input-picture"><br>
+            <button type="submit" id="submit-pic">Submit</button>
+        </h2>
+    </center>
+
+    <script type="text/javascript">
+        var params = {
+            "returnFaceId": "true",
+            "returnFaceAttributes": "age",
+        };
+
+        //Function to convert image data to blob.
+        var makeblob = function(dataURL) {
+            var BASE64_MARKER = ';base64,';
+            if (dataURL.indexOf(BASE64_MARKER) == -1) {
+                var parts = dataURL.split(',');
+                var contentType = parts[0].split(':')[1];
+                var raw = decodeURIComponent(parts[1]);
+                return new Blob([raw], {
+                    type: contentType
+                });
+            }
+            var parts = dataURL.split(BASE64_MARKER);
+            var contentType = parts[0].split(':')[1];
+            var raw = window.atob(parts[1]);
+            var rawLength = raw.length;
+
+            var uInt8Array = new Uint8Array(rawLength);
+
+            for (var i = 0; i < rawLength; ++i) {
+                uInt8Array[i] = raw.charCodeAt(i);
+            }
+
+            return new Blob([uInt8Array], {
+                type: contentType
+            });
+        }
+
+        // Function for AJAX call to detect face and assume age
+        function detectFaceAge(imageDataBlob) {
+            $.ajax({
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/octet-stream",
+                    "Ocp-Apim-Subscription-Key": "0ef6103744a14f9591f2708a965373b3"
+                },
+                url: "https://westus.api.cognitive.microsoft.com/face/v1.0/detect?" + $.param(params),
+                processData: false,
+                data: imageDataBlob
+
+            }).done(function(response) {
+
+                console.log(response);
+
+                if (response.length > 0) {
+                    var age = response["0"].faceAttributes.age;
+                    console.log("Age :" + age);
+                    console.log("Number of faces :" + response.length);
+                    alert("Age :" + age);
+                } else {
+                    alert("No face detected");
+                }
+
+            }).fail(function() {
+                alert("error");
+            });
+        }
+
+        // When click on submit button
+        $("#submit-pic").on("click", function() {
+
+            //Get uploaded file attributes and read the content of file
+            var input = $("#input-picture")[0].files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(input);
+
+            reader.onload = function(event) {
+
+                // Get image data, convert to blob
+                var imageData = event.target.result;
+                var imageBlob = makeblob(imageData);
+
+                // Call function for API call with this argument
+                detectFaceAge(imageBlob);
+            }
+
+        });
+    </script>
+</body>
+
+</html>
