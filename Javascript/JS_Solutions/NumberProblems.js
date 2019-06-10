@@ -175,6 +175,125 @@ function maxProductOfThree(A) {
     }
     return 0;
 }
+
+var arrayNum = [5, 1, -13, 8, 3, -2, 7, 4, 6, 45, -20];
+arrayNum.sort(function (a, b) {
+    return (a - b);
+});
+
+
+var randNum = Math.floor(Math.random() * 12) + 1;
+
+
+function frequencyOfChar(str) {
+    str = str.toLowerCase();
+    str = str.replace(/[^a-zA-Z]/g, '');
+    var mostFrequentL = "";
+    var mostFrequent = 0;
+    var obj = {};
+    for (var i = 0; i < str.length; i++) {
+        if (obj[str[i]]) {
+            obj[str[i]] = obj[str[i]] + 1;
+        } else {
+            obj[str[i]] = 1;
+        }
+        // obj[str[i]] = obj[str[i]] ? ++obj[str[i]] : 1;
+    }
+
+    for (o in obj) {
+        if (obj[o] > mostFrequent) {
+            mostFrequent = obj[o];
+            mostFrequentL = o;
+        }
+    }
+    return obj;
+}
+
+
+function palindrome(str) {
+    if (typeof (str) == "string") {
+        str = str.replace(/[^a-zA-Z]/g, "");
+        str = str.toLowerCase();
+        var str2 = str.split("").reverse().join('');
+        if (str === str2)
+            return true;
+    }
+    return false;
+}
+
+function fizzBuzz() {
+    for (var num = 1; num < 101; num++) {
+        if (num % 15 == 0) {
+            console.log("fizzBuzz", num);
+        } else if (num % 5 == 0) {
+            console.log("fizz");
+        } else if (num % 3 == 0) {
+            console.log("Buzz");
+        } else {
+            console.log(num);
+        }
+    }
+}
+
+function bubbleSort(arr) {
+    var len = arr.length;
+    for (var i = 0; i < len; i++) {
+        for (var j = 0; j < len; j++) {
+            if (arr[j] > arr[j + 1]) {
+                let temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    console.log(arr);
+}
+
+function bubbleSortEff(inputArr) {
+    let len = inputArr.length - 1;
+    let swapped;
+    do {
+        swapped = false;
+        for (let i = 0; i < len; i++) {
+            if (inputArr[i] > inputArr[i + 1]) {
+                let temp = inputArr[i];
+                inputArr[i] = inputArr[i + 1];
+                inputArr[i + 1] = temp;
+                swapped = true;
+            }
+        }
+        len--;
+        console.log(inputArr);
+    } while (swapped);
+    console.log(inputArr);
+}
+
+
+function fibonacci(n) {
+    var result = [0, 1];
+    for (let i = 2; i = n; i++) {
+        let num1 = result[i - 1];
+        let num2 = result[i - 2];
+        result.push(num1 + num2);
+    }
+    return result;
+}
+
+function fibonacciRecursion(n) {
+    // if (n < 2){
+    //   return n
+    // }
+    // return fib(n - 1) + fib (n - 2)
+    if (n === 1) {
+        return [0, 1];
+    }
+    else {
+        var s = fibonacciRecursion(n - 1);
+        s.push(s[s.length - 1] + s[s.length - 2]);
+        return s;
+    }
+}
+
 // var answer = is_integer("5mm");
 // console.log(sum);
 // var answer = factorial(4);
