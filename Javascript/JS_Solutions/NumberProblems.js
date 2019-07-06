@@ -10,7 +10,7 @@ function is_integer(n) {
 // Using the forEach function defined for an array, find the sum of the array of numbers. [function add_all(arr) {...}]
 var sum = 0;
 var arrayNumber = [2, 9, 10];
-arrayNumber.forEach(function (num) {
+arrayNumber.forEach(function(num) {
     sum += num;
 });
 
@@ -18,8 +18,7 @@ arrayNumber.forEach(function (num) {
 // Write a factorial function that returns the factorial of a given number, n. Make sure you return the calculated value and not just print it. [function factorial(n){...}]
 
 function factorial(num) {
-    if (num === 0) { return 1; }
-    else { return num * factorial(num - 1); }
+    if (num === 0) { return 1; } else { return num * factorial(num - 1); }
 }
 
 
@@ -54,9 +53,9 @@ function binaryGap(N) {
     var binary = (N >>> 0).toString(2);
     var regex = /(?!1)(0+)(?=1)/g;
     var arrOfZeros = binary.match(regex);
-    var result = (arrOfZeros) 
-    ? arrOfZeros.sort((n1, n2) => n1.length < n2.length)[0].length 
-    : 0;
+    var result = (arrOfZeros) ?
+        arrOfZeros.sort((n1, n2) => n1.length < n2.length)[0].length :
+        0;
     return result;
 }
 
@@ -102,11 +101,11 @@ function oddOccurrencesInArray(A) {
 }
 
 function frogJump(X, Y, D) {
-    return Math.ceil((Y - X)/ D);
+    return Math.ceil((Y - X) / D);
 }
 
 function permMissingElem(A) {
-    A.sort(function (a, b) {
+    A.sort(function(a, b) {
         return a - b;
     });
 
@@ -121,25 +120,25 @@ function permMissingElem(A) {
 
 function missingInteger(A) {
     var map = {};
-     var min = 1;
- 
-     for (var i = 0; i < A.length; i++) {
-         if (A[i] > 0) {
-             map[A[i]] = true;
- 
-         }
-     }
- 
-     if (!map[min]) return 1;
-     while (map[min])
-         min++;
-     return min;
- 
- }
+    var min = 1;
 
- function triangle(A) {
+    for (var i = 0; i < A.length; i++) {
+        if (A[i] > 0) {
+            map[A[i]] = true;
+
+        }
+    }
+
+    if (!map[min]) return 1;
+    while (map[min])
+        min++;
+    return min;
+
+}
+
+function triangle(A) {
     var arrayLength = A.length;
-    A.sort(function (a, b) {
+    A.sort(function(a, b) {
         return a - b;
     });
 
@@ -148,7 +147,9 @@ function missingInteger(A) {
     }
 
     for (var i = 0; i < len - 2; i++) {
-        var P = i, Q = i + 1, R = i + 2;
+        var P = i,
+            Q = i + 1,
+            R = i + 2;
         var condition1 = A[P] + A[Q] > A[R];
         var condition2 = A[Q] + A[R] > A[P];
         var condition3 = A[R] + A[P] > A[Q];
@@ -161,7 +162,7 @@ function missingInteger(A) {
 
 function maxProductOfThree(A) {
     var arrayLength = A.length;
-    A.sort(function (a, b) {
+    A.sort(function(a, b) {
         return a - b;
     })
     var B = [];
@@ -177,7 +178,7 @@ function maxProductOfThree(A) {
 }
 
 var arrayNum = [5, 1, -13, 8, 3, -2, 7, 4, 6, 45, -20];
-arrayNum.sort(function (a, b) {
+arrayNum.sort(function(a, b) {
     return (a - b);
 });
 
@@ -211,7 +212,7 @@ function frequencyOfChar(str) {
 
 
 function palindrome(str) {
-    if (typeof (str) == "string") {
+    if (typeof(str) == "string") {
         str = str.replace(/[^a-zA-Z]/g, "");
         str = str.toLowerCase();
         var str2 = str.split("").reverse().join('');
@@ -286,12 +287,63 @@ function fibonacciRecursion(n) {
     // return fib(n - 1) + fib (n - 2)
     if (n === 1) {
         return [0, 1];
-    }
-    else {
+    } else {
         var s = fibonacciRecursion(n - 1);
         s.push(s[s.length - 1] + s[s.length - 2]);
         return s;
     }
+}
+
+function duplicateCharacters(input) {
+    // Your code goes here
+    var dupeCharObject = {};
+    var dupeCount = 0;
+    for (var i = 0; i < input.length; i++) {
+        var character = input.charAt(i);
+        if (dupeCharObject[character]) {
+            dupeCharObject[character]++;
+        } else {
+            dupeCharObject[character] = 1;
+        }
+    }
+    Object.keys(dupeCharObject).forEach(function(key) {
+        if (dupeCharObject[key] !== 1) {
+            dupeCount++;
+        }
+    });
+    return dupeCount;
+};
+
+function secondHighestDigit(input) {
+    // Your code goes here
+    // Extract number, split to make array, make set get unique elements, 
+    var secondHighest;
+    var numArray = input.match(/\d/g);
+    if (numArray == null) {
+        return -1;
+    } else if (numArray.length == 0 || numArray.length == 1) {
+        return -1;
+    } else {
+        var numArrayUnique = Array.from(new Set(numArray));
+        var sortArray = numArrayUnique.sort();
+        secondHighest = sortArray[sortArray.length - 2];
+    }
+    return parseInt(secondHighest);
+};
+
+function formatDate(userDate) {
+    // format from M/D/YYYY to YYYYMMDD
+    let dateArray = userDate.split("/");
+    if (dateArray[0].length == 1) {
+        dateArray[0] = 0 + dateArray[0];
+    }
+    if (dateArray[1].length == 1) {
+        dateArray[1] = 0 + dateArray[1];
+    }
+
+
+    let dateString = dateArray[2] + dateArray[1] + dateArray[0]
+    return dateString;
 }
 
 // var answer = is_integer("5mm");
